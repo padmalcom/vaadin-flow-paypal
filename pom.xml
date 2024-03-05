@@ -6,7 +6,7 @@
 	<artifactId>vaadin-flow-paypal</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 
-	<name>${project.groupId}:${project.artifactId}</name>
+	<name>vaadin-flow-paypal</name>
 	<packaging>jar</packaging>
 
 	<properties>
@@ -42,16 +42,26 @@
 		</dependencies>
 	</dependencyManagement>
 
+	<pluginRepositories>
+		<pluginRepository>
+			<id>maven-snapshots</id>
+			<url>https://repository.apache.org/content/repositories/snapshots/</url>
+		</pluginRepository>
+		<pluginRepository>
+			<id>maven-shade-plugin</id>
+			<url>
+				https://mvnrepository.com/artifact/org.apache.maven.plugins/maven-shade-plugin</url>
+		</pluginRepository>
+	</pluginRepositories>
+
 	<build>
 		<sourceDirectory>src</sourceDirectory>
 		<plugins>
 			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
-				<version>3.2</version>
-				<configuration> <!-- Compile java 7 compatible bytecode -->
-					<source>1.8</source>
-					<target>1.8</target>
+				<version>3.8.1</version>
+				<configuration>
+					<release>17</release>
 				</configuration>
 			</plugin>
 		</plugins>

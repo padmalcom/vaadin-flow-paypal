@@ -1,5 +1,7 @@
 package de.stonedrum.vaadin.payment.paypal.payment;
 
+import java.util.Locale;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -44,7 +46,7 @@ public class PaypalPayment extends Div {
 		paypalButtonContainer.setId("button-container");
 
 		this.add(paypalButtonContainer);
-		this.getElement().executeJs(String.format("""
+		this.getElement().executeJs(String.format(Locale.ROOT, """
 				paypal.Buttons({
 					style: {
 						layout: '%s',

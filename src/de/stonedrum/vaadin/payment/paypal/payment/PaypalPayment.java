@@ -28,7 +28,7 @@ public class PaypalPayment extends Div {
 	public static final String LAYOUT = "vertical";
 	public static final String COLOR = "gold";
 	public static final String SHAPE = "rect";
-	public static final String LABEL = "label";
+	public static final String LABEL = "paypal";
 	public static final String SUCCESS_MESSAGE = "<h3>Thank you for your payment!</h3>";
 
 	public PaypalPayment(String paypalClientId, float paymentAmount, String paymentCurrency, String sdkCurrency) {

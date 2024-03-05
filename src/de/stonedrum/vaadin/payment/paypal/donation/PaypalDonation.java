@@ -13,8 +13,8 @@ import com.vaadin.flow.component.html.Div;
 import com.vaadin.flow.shared.Registration;
 
 import de.stonedrum.vaadin.payment.paypal.donation.event.DonationEvent;
+import de.stonedrum.vaadin.payment.paypal.donation.model.DonationData;
 import de.stonedrum.vaadin.payment.paypal.donation.model.DonationEnvironment;
-import de.stonedrum.vaadin.payment.paypal.payment.model.OrderData;
 import elemental.json.JsonObject;
 import lombok.Getter;
 import lombok.Setter;
@@ -64,10 +64,10 @@ public class PaypalDonation extends Div {
 
 		ObjectMapper om = new ObjectMapper();
 		try {
-			OrderData od = om.readValue(data.toJson(), OrderData.class);
+			DonationData dd = om.readValue(data.toJson(), DonationData.class);
 
 			// https://levelup.gitconnected.com/how-to-use-custom-events-in-vaadin-6c4a187088c
-			fireEvent(new DonationEvent(this, false, od));
+			fireEvent(new DonationEvent(this, false, dd));
 		} catch (Exception e) {
 			logger.error("Error while parsing donation response.", e);
 		}

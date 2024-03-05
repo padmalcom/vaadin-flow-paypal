@@ -3,7 +3,7 @@ package de.stonedrum.vaadin.payment.paypal.donation.event;
 import com.vaadin.flow.component.ComponentEvent;
 
 import de.stonedrum.vaadin.payment.paypal.donation.PaypalDonation;
-import de.stonedrum.vaadin.payment.paypal.payment.model.OrderData;
+import de.stonedrum.vaadin.payment.paypal.donation.model.DonationData;
 import lombok.Getter;
 
 @Getter
@@ -11,10 +11,10 @@ public class DonationEvent extends ComponentEvent<PaypalDonation> {
 
 	private static final long serialVersionUID = 1L;
 
-	private OrderData orderData;
+	private DonationData donationData;
 	
-	public DonationEvent(PaypalDonation source, boolean fromClient, OrderData orderData) {
+	public DonationEvent(PaypalDonation source, boolean fromClient, DonationData donationData) {
 		super(source, fromClient);
-		this.orderData = orderData;
+		this.donationData = donationData;
 	}
 }

@@ -1,4 +1,4 @@
-package de.stonedrum.vaadin.payment.paypal.model;
+package de.stonedrum.vaadin.payment.paypal.payment.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;

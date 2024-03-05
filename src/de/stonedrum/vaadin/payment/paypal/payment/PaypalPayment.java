@@ -1,4 +1,4 @@
-package de.stonedrum.vaadin.payment.paypal;
+package de.stonedrum.vaadin.payment.paypal.payment;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -12,8 +12,8 @@ import com.vaadin.flow.component.UI;
 import com.vaadin.flow.component.html.Div;
 import com.vaadin.flow.shared.Registration;
 
-import de.stonedrum.vaadin.payment.paypal.event.PaymentEvent;
-import de.stonedrum.vaadin.payment.paypal.model.OrderData;
+import de.stonedrum.vaadin.payment.paypal.payment.event.PaymentEvent;
+import de.stonedrum.vaadin.payment.paypal.payment.model.OrderData;
 import elemental.json.JsonObject;
 
 @Tag("paypal-payment")

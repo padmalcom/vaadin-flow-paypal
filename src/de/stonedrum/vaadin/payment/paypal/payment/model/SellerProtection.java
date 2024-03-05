@@ -1,4 +1,4 @@
-package de.stonedrum.vaadin.payment.paypal.model;
+package de.stonedrum.vaadin.payment.paypal.payment.model;
 
 import java.util.ArrayList;
 

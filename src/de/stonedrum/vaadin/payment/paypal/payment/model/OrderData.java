@@ -1,5 +1,6 @@
-package de.stonedrum.vaadin.payment.paypal.model;
+package de.stonedrum.vaadin.payment.paypal.payment.model;
 
+import java.util.ArrayList;
 import java.util.Date;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
@@ -11,22 +12,20 @@ import lombok.Setter;
 @Getter
 @Setter
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class Capture {
+public class OrderData {
+
 	private String id;
-	
+	private String intent;
 	private String status;
-	
-	private Amount amount;
-	
-	@JsonProperty("final_capture")
-	private boolean finalCapture;
-	
-	@JsonProperty("seller_protection")
-	private SellerProtection sellerProtection;
-	
+
+	@JsonProperty("purchase_units")
+	private ArrayList<PurchaseUnit> purchaseUnits;
+	private Payer payer;
+
 	@JsonProperty("create_time")
 	private Date createTime;
-	
+
 	@JsonProperty("update_time")
 	private Date updateTime;
+	private ArrayList<Link> links;
 }

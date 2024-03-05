@@ -1,6 +1,4 @@
-package de.stonedrum.vaadin.payment.paypal.model;
-
-import java.util.ArrayList;
+package de.stonedrum.vaadin.payment.paypal.payment.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
@@ -10,6 +8,8 @@ import lombok.Setter;
 @Getter
 @Setter
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class Payments {
-	private ArrayList<Capture> captures;
+public class Link {
+	private String href;
+	private String rel;
+	private String method;
 }

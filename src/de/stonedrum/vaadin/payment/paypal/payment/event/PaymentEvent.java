@@ -1,9 +1,9 @@
-package de.stonedrum.vaadin.payment.paypal.event;
+package de.stonedrum.vaadin.payment.paypal.payment.event;
 
 import com.vaadin.flow.component.ComponentEvent;
 
-import de.stonedrum.vaadin.payment.paypal.PaypalPayment;
-import de.stonedrum.vaadin.payment.paypal.model.OrderData;
+import de.stonedrum.vaadin.payment.paypal.payment.PaypalPayment;
+import de.stonedrum.vaadin.payment.paypal.payment.model.OrderData;
 import lombok.Getter;
 
 @Getter

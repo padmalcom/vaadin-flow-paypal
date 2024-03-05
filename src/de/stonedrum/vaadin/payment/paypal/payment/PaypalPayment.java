@@ -38,7 +38,7 @@ public class PaypalPayment extends Div {
 		this.setId("paypal-button-container");
 
 		UI.getCurrent().getPage()
-				.addJavaScript("https://www.paypal.com/sdk/js?client-id=%s&currency=%s");
+				.addJavaScript(String.format("https://www.paypal.com/sdk/js?client-id=%s&currency=%s", paypalClientId, sdkCurrency));
 
 		Div paypalButtonContainer = new Div();
 		paypalButtonContainer.setId("button-container");
@@ -76,7 +76,7 @@ public class PaypalPayment extends Div {
 				    	document.getElementById('paypal-button-container').$server.error(err);
 				    }
 				}).render('#button-container');
-				""", paypalClientId, sdkCurrency, layout, color, shape, label, paymentCurrency, paymentAmount, successMessage));
+				""", layout, color, shape, label, paymentCurrency, paymentAmount, successMessage));
 	}
 
 	public <T extends ComponentEvent<?>> Registration addListener(Class<T> eventType,

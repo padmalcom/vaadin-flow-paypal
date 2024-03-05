@@ -47,7 +47,7 @@ public class PaypalDonation extends Div {
 				title:'PayPal - The safer, easier way to pay online!',
 			},
 			onComplete: function (params) {
-
+				document.getElementById('donate-button-container').$server.donationComplete(params);
 			}
 		}).render('#donate-button');
 		""", env.toString(), id));

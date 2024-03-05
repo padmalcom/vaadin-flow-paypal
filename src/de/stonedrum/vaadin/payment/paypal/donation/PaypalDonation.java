@@ -29,7 +29,11 @@ public class PaypalDonation extends Div {
 	
 	private static final Logger logger = LoggerFactory.getLogger(PaypalDonation.class);
 	
-	public PaypalDonation(String id, DonationEnvironment env) {
+	private static final String IMG_SRC = "https://www.paypalobjects.com/de_DE/DE/i/btn/btn_donate_LG.gif";
+	private static final String IMG_ALT = "Spenden mit dem PayPal-Button";
+	private static final String IMG_TITLE = "PayPal - The safer, easier way to pay online!";
+	
+	public PaypalDonation(String id, DonationEnvironment env, String imgSrc, String imgAlt, String imgTitle) {
 		this.setId("donate-button-container");
 		
 		Div donateButton = new Div();
@@ -42,15 +46,19 @@ public class PaypalDonation extends Div {
 			env:'%s',
 			hosted_button_id:'%s',
 			image: {
-				src:'https://www.paypalobjects.com/de_DE/DE/i/btn/btn_donate_LG.gif',
-				alt:'Spenden mit dem PayPal-Button',
-				title:'PayPal - The safer, easier way to pay online!',
+				src:'%s',
+				alt:'%s',
+				title:'%s',
 			},
 			onComplete: function (params) {
 				document.getElementById('donate-button-container').$server.donationComplete(params);
 			}
 		}).render('#donate-button');
-		""", env.toString(), id));
+		""", env.toString(), id, imgSrc, imgAlt, imgTitle));		
+	}
+	
+	public PaypalDonation(String id, DonationEnvironment env) {
+		this(id, env, IMG_SRC, IMG_ALT, IMG_TITLE);
 	}
 	
 	public <T extends ComponentEvent<?>> Registration addListener(Class<T> eventType,

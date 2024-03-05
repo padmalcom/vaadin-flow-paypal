@@ -23,11 +23,22 @@ public class PaypalPayment extends Div {
 
 	private static final Logger logger = LoggerFactory.getLogger(PaypalPayment.class);
 
-	public PaypalPayment(String paypalClientId) {
+	public static final String LAYOUT = "vertical";
+	public static final String COLOR = "gold";
+	public static final String SHAPE = "rect";
+	public static final String LABEL = "label";
+	public static final String SUCCESS_MESSAGE = "<h3>Thank you for your payment!</h3>";
+
+	public PaypalPayment(String paypalClientId, float paymentAmount, String paymentCurrency, String sdkCurrency) {
+		this(paypalClientId, paymentAmount, paymentCurrency, sdkCurrency, LAYOUT, COLOR, SHAPE, LABEL, SUCCESS_MESSAGE);
+	}
+	
+	public PaypalPayment(String paypalClientId, float paymentAmount, String paymentCurrency, String sdkCurrency, String layout,
+			String color, String shape, String label, String successMessage) {
 		this.setId("paypal-button-container");
 
 		UI.getCurrent().getPage()
-				.addJavaScript("https://www.paypal.com/sdk/js?client-id=" + paypalClientId + "&currency=EUR");
+				.addJavaScript("https://www.paypal.com/sdk/js?client-id=%s&currency=%s");
 
 		Div paypalButtonContainer = new Div();
 		paypalButtonContainer.setId("button-container");
@@ -36,42 +47,36 @@ public class PaypalPayment extends Div {
 		this.getElement().executeJs(String.format("""
 				paypal.Buttons({
 					style: {
-						layout: 'vertical',
-						color:  'gold',
-						shape:  'rect',
-						label:  'paypal'
+						layout: '%s',
+						color:  '%s',
+						shape:  '%s',
+						label:  '%s'
 					},
 					createOrder: function(data, actions) {
 						return actions.order.create({
-				                  purchase_units: [{"amount":{"currency_code": "EUR", "value": 2.00}}]
-				              });
+				        	purchase_units: [{"amount":{"currency_code": "%s", "value": %.2f}}]
+				        });
 					},
 
 
-				          onApprove: function(data, actions) {
-				              return actions.order.capture().then(function(orderData) {
-
-				                  // Full available details
-				                  console.log('Capture result', orderData, JSON.stringify(orderData, null, 2));
-
+				    onApprove: function(data, actions) {
+				    	return actions.order.capture().then(function(orderData) {
 							document.getElementById('paypal-button-container').$server.approve(orderData);
 
-				                  // Show a success message within this page, for example:
-				                  const element = document.getElementById('paypal-button-container');
-				                  element.innerHTML = '';
-				                  element.innerHTML = '<h3>Thank you for your payment!</h3>';
+				            const element = document.getElementById('paypal-button-container');
+				            element.innerHTML = '';
+				            element.innerHTML = '%s';
 
-				                  // Or go to another URL:  actions.redirect('thank_you.html');
+				            // Or go to another URL:  actions.redirect('thank_you.html');
 
-				              });
-				          },
+				        });
+				    },
 
-				          onError: function(err) {
-				              console.log(err);
-				              document.getElementById('paypal-button-container').$server.error(err);
-				          }
+				    onError: function(err) {
+				    	document.getElementById('paypal-button-container').$server.error(err);
+				    }
 				}).render('#button-container');
-				""", ""));
+				""", paypalClientId, sdkCurrency, layout, color, shape, label, paymentCurrency, paymentAmount, successMessage));
 	}
 
 	public <T extends ComponentEvent<?>> Registration addListener(Class<T> eventType,

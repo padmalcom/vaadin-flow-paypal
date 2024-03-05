@@ -10,8 +10,6 @@ import lombok.Setter;
 @Setter
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class DonationData {
-	// Example: {"tx":"5YR24965C50643359","st":"Completed","amt":"1.00","cc":"EUR","cm":"","item_number":"","item_name":""}
-	
 	@JsonProperty("tx")
 	private String transactionId;
 	

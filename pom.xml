@@ -42,18 +42,6 @@
 		</dependencies>
 	</dependencyManagement>
 
-	<pluginRepositories>
-		<pluginRepository>
-			<id>maven-snapshots</id>
-			<url>https://repository.apache.org/content/repositories/snapshots/</url>
-		</pluginRepository>
-		<pluginRepository>
-			<id>maven-shade-plugin</id>
-			<url>
-				https://mvnrepository.com/artifact/org.apache.maven.plugins/maven-shade-plugin</url>
-		</pluginRepository>
-	</pluginRepositories>
-
 	<build>
 		<sourceDirectory>src</sourceDirectory>
 		<plugins>
@@ -63,6 +51,25 @@
 				<configuration>
 					<release>17</release>
 				</configuration>
+			</plugin>
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-assembly-plugin</artifactId>
+				<configuration>
+					<appendAssemblyId>false</appendAssemblyId>
+					<descriptors>
+						<descriptor>assembly/assembly.xml</descriptor>
+					</descriptors>
+				</configuration>
+				<executions>
+					<execution>
+						<goals>
+							<goal>single</goal>
+						</goals>
+						<phase>install</phase>
+					</execution>
+				</executions>
 			</plugin>
 		</plugins>
 	</build>
